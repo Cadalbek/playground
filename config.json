@@ -1,0 +1,21 @@
+{
+  "cnx_psql": {
+    "host": "localhost",
+    "port": "5435",
+    "database": "gus",
+    "user": "postgres",
+    "passwd": "postgres",
+    "dbtype": "postgis",
+    "schema": "schematest"
+  },
+  "cnx_globales": {
+    "auth_admin": "admin",
+    "auth_password": "geoserver",
+    "urlgeoserver": "http://localhost:8080/geoserver/web/",
+    "urlrest": "http://localhost:8080/geoserver/rest",
+    "urlwebsig": "C:/DEPOTS_GIT_PERSO/playground/leaflet/example4.html",
+    "pathbat": "C:\\DEPOTS_GIT_PERSO\\playground\\start_geoserver.bat",
+    "datashp": "file:///C:/Users/gerard/Desktop/FORCITY/PROJETS/VRVD/layers/",
+    "headers": "{'Content-type': 'text/xml'}"
+  }
+}

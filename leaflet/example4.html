@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Quick Start - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+	
+</head>
+<body>
+
+<div id="mapid" style="width: 1800px; height: 1000px;"></div>
+<script src="L.TileLayer.BetterWMS.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+
+	var mymap = L.map('mapid').setView([45.750000, 4.850000], 13);
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+
+        var basemaps = {
+		
+
+        AIRE_TRIAGE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:AIRE_TRIAGE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        BATI_INDUSTRIEL: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:BATI_INDUSTRIEL',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        BATI_REMARQUABLE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:BATI_REMARQUABLE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        CONDUITE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:CONDUITE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        CANALISATION_EAU: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:CANALISATION_EAU',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        CONSTRUCTION_LINEAIRE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:CONSTRUCTION_LINEAIRE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        CONSTRUCTION_PONCTUELLE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:CONSTRUCTION_PONCTUELLE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        CONSTRUCTION_SURFACIQUE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:CONSTRUCTION_SURFACIQUE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        GARE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:GARE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        HYDRONYME: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:HYDRONYME',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        LIGNE_ELECTRIQUE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:LIGNE_ELECTRIQUE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_ADMINISTRATIF_MILITAIRE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_ADMINISTRATIF_MILITAIRE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_CULTURE_LOISIRS: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_CULTURE_LOISIRS',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_ESPACE_NATUREL: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_ESPACE_NATUREL',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_GESTION_EAUX: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_GESTION_EAUX',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_SANTE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_SANTE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_OROGRAPHIE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_OROGRAPHIE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_HYDROGRAPHIE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_HYDROGRAPHIE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_INDUSTRIEL_COMMERCIAL: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_INDUSTRIEL_COMMERCIAL',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_RELIGIEUX: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_RELIGIEUX',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_SCIENCE_ENSEIGNEMENT: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_SCIENCE_ENSEIGNEMENT',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_TRANSPORT: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_TRANSPORT',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_SPORT: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_SPORT',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PAI_ZONE_HABITATION: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PAI_ZONE_HABITATION',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PISTE_AERODROME: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PISTE_AERODROME',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        POINT_EAU: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:POINT_EAU',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        POSTE_TRANSFORMATION: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:POSTE_TRANSFORMATION',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        SURFACE_EAU: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:SURFACE_EAU',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        RESERVOIR_EAU: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:RESERVOIR_EAU',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        PYLONE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:PYLONE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        RESERVOIR: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:RESERVOIR',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        SURFACE_ACTIVITE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:SURFACE_ACTIVITE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        SURFACE_ROUTE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:SURFACE_ROUTE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        TOPONYME_COMMUNICATION: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:TOPONYME_COMMUNICATION',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        TERRAIN_SPORT: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:TERRAIN_SPORT',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        TOPONYME_FERRE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:TOPONYME_FERRE',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        TRONCON_COURS_EAU: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:TRONCON_COURS_EAU',
+                    format: 'image/png',
+                    transparent: true }),
+                    
+                    
+                    
+        TRONCON_VOIE_FERREE: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+                    layers: 'schematest:TRONCON_VOIE_FERREE',
+                    format: 'image/png',
+                    transparent: true })}
+
+	L.control.layers(basemaps).addTo(mymap);
+</script>
+</body>
+</html>
