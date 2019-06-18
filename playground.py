@@ -10,12 +10,16 @@ import logging
 import psycopg2
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s -- %(levelname)s -- %(message)s')
+# hdl = GsHandler('config.json')
+# hdl.InitGs()
+# hdl.InitGs('fr')
+# hdl2 = GsHandler('config2.json')
+# hdl3 = GsHandler('config3.json')
 
-
-class GsHandler():
-    def __init__(self):
+class GsHandler(object):
+    def __init__(self, config_file):
         # Initialisation des variables
-        self.config = open("config.json")
+        self.config = open(config_file)
         self.param = json.load(self.config)
         self.store = self.param['cnx_globales']['urlgeoserver']
         self.websig = self.param['cnx_globales']['urlwebsig']
@@ -29,6 +33,10 @@ class GsHandler():
             self.param['cnx_psql']['port'],
             self.param['cnx_psql']['database']
         )
+        self.conn = psycopg2.connect(self.con_string)
+        self.cur = self.conn.cursor()
+        self.qu1 = """SELECT table_name FROM information_schema.tables WHERE table_schema = '""" + \
+                   self.param['cnx_psql']['schema'] + """' """
 
     def InitGs(self):
         # Input de lancement du server en local
@@ -52,7 +60,7 @@ class GsHandler():
             pass
 
         # Appel de la nouvelle fonction CraftGs
-        GsHandler.CraftGs()
+        self.CraftGs()
 
     def CraftGs(self):
         # Input de création d'un nouveau WorkSpace [WS]
@@ -96,7 +104,7 @@ class GsHandler():
             pass
 
         # Appel de la nouvelle fonction DataGs
-        GsHandler.DataGs()
+        self.DataGs()
 
     def DataGs(self):
         # Input de publication de données UNIQUE
@@ -114,10 +122,6 @@ class GsHandler():
 
         # Input de publication de données MASS
         elif self.choice2 == 'MASS':
-            self.conn = psycopg2.connect(self.con_string)
-            self.cur = self.conn.cursor()
-            self.qu1 = """SELECT table_name FROM information_schema.tables WHERE table_schema = '""" + \
-                       self.param['cnx_psql']['schema'] + """' """
             self.cur.execute(self.qu1)
             self.rows = self.cur.fetchall()
             self.workspace_name_data_mass = (raw_input("Input your workspace's name: "))
@@ -134,15 +138,48 @@ class GsHandler():
                 self.response_mass = requests.post(self.url_data_mass, data=self.data_data_mass, auth=self.auth,
                                                    headers=self.headers_data_mass)
 
+        self.AppendWebsig()
+
+    def AppendWebsig(self):
+        self.choice3 = (raw_input("Input [Y/N] for appened the result on a new html leaflet file: "))
+        if self.choice3 == 'Y':
+            self.cur.execute(self.qu1)
+            self.rows = self.cur.fetchall()
+            self.html_file = """: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+			layers: '"""
+
+            self.schemafile = self.param['cnx_psql']['schema']
+
+            self.html_file_2 = """',
+			format: 'image/png',
+  			transparent: true
+		}),"""
+
+            self.list_final = []
+
+            for self.z in self.rows:
+                self.table_name_2 = str(self.z)[2:-3]
+                self.final = self.table_name_2 + self.html_file + self.schemafile + """:""" + self.table_name_2 + self.html_file_2
+                self.list_final.append(self.final)
+        else:
+            pass
+
+        with open("result.html", "w") as result:
+            ii = str()
+            for i in self.list_final:
+                ii += i + '\n' + '\n'
+            result.write(str(ii))
+            print ii
+
+
         print '---- Ending Process ----'
 
 
 """MAIN"""
 
 if __name__ == '__main__':
-    GsHandler()
-    GsHandler = GsHandler()
-    GsHandler.InitGs()
+    handler = GsHandler('config.json')
+    handler.InitGs()
 
 ##### BACKLOG #####
 ## Un appel de console unique ?
