@@ -1,21 +1,21 @@
 {
   "cnx_psql": {
-    "host": "192.168.1.149",
-    "port": "5432",
-    "database": "france_ign",
-    "user": "gerard",
-    "passwd": "Lolilol32#",
-    "dbtype": "postgis",
-    "schema": "bati_2018"
+    "host": "",
+    "port": "",
+    "database": "",
+    "user": "",
+    "passwd": "",
+    "dbtype": "",
+    "schema": ""
   },
   "cnx_globales": {
     "auth_admin": "admin",
     "auth_password": "geoserver",
     "urlgeoserver": "http://localhost:8080/geoserver/web/",
     "urlrest": "http://localhost:8080/geoserver/rest",
-    "urlwebsig": "C:/DEPOTS_GIT_PERSO/playground/leaflet/visu.html",
-    "pathbat": "C:\\DEPOTS_GIT_PERSO\\playground\\start_geoserver.bat",
-    "datashp": "file:///C:/Users/gerard/Desktop/FORCITY/PROJETS/VRVD/layers/",
+    "urlwebsig": "/playground/leaflet/visu.html",
+    "pathbat": "\\playground\\start_geoserver.bat",
+    "datashp": "",
     "headers": "{'Content-type': 'text/xml'}"
   }
 }
