@@ -145,10 +145,8 @@ class GsHandler(object):
         if self.choice3 == 'Y':
             self.cur.execute(self.qu1)
             self.rows = self.cur.fetchall()
-            self.html_file = """: L.tileLayer.wms('http://localhost:8080/geoserver/schematest/wms?', {
+            self.html_file = """: L.tileLayer.wms('http://localhost:8080/geoserver/""" + self.workspace_name_data_mass + """/wms?', {
 			layers: '"""
-
-            self.schemafile = self.param['cnx_psql']['schema']
 
             self.html_file_2 = """',
 			format: 'image/png',
@@ -159,7 +157,7 @@ class GsHandler(object):
 
             for self.z in self.rows:
                 self.table_name_2 = str(self.z)[2:-3]
-                self.final = self.table_name_2 + self.html_file + self.schemafile + """:""" + self.table_name_2 + self.html_file_2
+                self.final = self.table_name_2 + self.html_file + self.workspace_name_data_mass + """:""" + self.table_name_2 + self.html_file_2
                 self.list_final.append(self.final)
         else:
             pass
