@@ -1,4 +1,4 @@
-### PLATGROUND
+### PLAYGROUND
 Playground allows you to have a multiple tool for a geoserver handling.
 Features :
 - Open a .bat command prompt for launching the geoserver prompt
